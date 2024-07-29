@@ -1,0 +1,174 @@
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    overflow-y: inherit;
+    overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+    width: 4px;
+    height: 14px;
+}
+
+body::-webkit-scrollbar-track,
+body::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+}
+
+body::-webkit-scrollbar-thumb {
+    min-height: 20px;
+    background-clip: content-box;
+}
+
+body::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #D8D8D8;
+}
+
+body,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h4,
+h5 {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #eaeef5;
+    /* background-color: #fff; */
+    color: #333;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    font-size: 12px;
+    text-align: left;
+}
+
+select {
+    font-size: 12px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+fieldset,
+img {
+    border: 0 none;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset p {
+    margin: 0;
+    padding: 0 0 0 8px;
+}
+
+legend {
+    display: none;
+}
+
+address,
+caption,
+em,
+strong,
+th,
+i {
+    font-style: normal;
+    font-weight: 400;
+}
+
+table caption {
+    margin-left: -1px;
+}
+input,textarea{
+    border: 0;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+button{
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+hr {
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #E4E4E4;
+    border-width: 1px 0;
+    clear: both;
+    height: 2px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+ol,
+ul {
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+caption,
+th {
+    text-align: left;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+    content: ””;
+}
+a{
+    text-decoration: none;
+}
+
+
+.el-dialog__header{
+    font-weight: 600;
+    color: #222;
+}
+.el-dialog__body{
+    height: 100%;
+    max-height: 696px;
+    overflow: auto;
+    padding: 30px 20px 10px;
+    box-sizing: border-box;
+}
+.el-dialog__footer{
+    
+    background: #f5f7f9;
+    padding: 10px 20px 10px !important;
+}
+.el-select,.el-cascader{
+    width: 85%;
+}

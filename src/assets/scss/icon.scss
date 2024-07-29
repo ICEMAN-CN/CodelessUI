@@ -1,0 +1,56 @@
+//公用图标
+.icon {
+    display: inline-block;
+    background-size: cover;
+    vertical-align: bottom;
+
+    @mixin autoIcon ($className, $iconUrl, $width, $height) {
+        &.#{$className} {
+            background: url('../image/#{$iconUrl}.png') no-repeat center;
+            background-size: contain;
+            width: #{$width}px;
+            height: #{$height}px;
+        }
+    }
+
+    @include autoIcon(vipOn, vipOn, 20, 16);
+    @include autoIcon(vipOff, vipOff, 20, 16);
+    @include autoIcon(msgOn, msgOn, 20, 16);
+    @include autoIcon(msgOff, msgOff, 20, 16);
+
+    @include autoIcon(aside_icon1, aside_icon1, 20, 20);
+    @include autoIcon(aside_icon2, aside_icon2, 20, 20);
+    @include autoIcon(aside_icon3, aside_icon3, 20, 20);
+    @include autoIcon(aside_icon4, aside_icon4, 20, 20);
+    @include autoIcon(aside_icon5, aside_icon5, 20, 20);
+
+    @include autoIcon(close_icon, close_icon, 20, 20);
+
+    @include autoIcon(prev_icon, prev_icon, 10, 10);
+    @include autoIcon(next_icon, next_icon, 10, 10);
+    @include autoIcon(date_icon, date_icon, 20, 20);
+
+    @include autoIcon(checkboxOff_icon, checkboxOff_icon, 22, 28);
+    @include autoIcon(checkboxOn_icon, checkboxOn_icon, 22, 28);
+    @include autoIcon(checkboxOff_disable_icon, checkboxOff_disable_icon, 22, 28);
+    @include autoIcon(checkboxOn_disable_icon, checkboxOn_disable_icon, 22, 28);
+
+    @include autoIcon(arrows_dwon_icon, arrows_dwon_icon, 11, 9);
+    @include autoIcon(eye_icon, eye_icon, 20, 13);
+    @include autoIcon(refresh_icon, refresh_icon, 16, 16);
+
+    @include autoIcon(function_nav_icon, function_nav_icon, 20, 20);
+
+    @include autoIcon(search_icon, search_icon, 16, 16);
+
+    @include autoIcon(Breadcrumb_icon, Breadcrumb_icon, 6, 12);
+
+    @include autoIcon(add_icon, add_icon, 20, 20);
+    @include autoIcon(remove_icon, remove_icon, 20, 20);
+
+    @include autoIcon(guanliIcon, guanliIcon, 20, 20);
+    @include autoIcon(GangbiIcon, GangbiIcon, 20, 20);
+    @include autoIcon(QianbiIcon, QianbiIcon, 20, 20);
+
+
+}
