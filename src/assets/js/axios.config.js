@@ -9,8 +9,8 @@ import qs from 'qs';
 
 // axios.defaults.baseURL = 'https://crs.gamersky.com:9890';
 // axios.defaults.baseURL = 'http://49.232.70.73:9621';
-axios.defaults.baseURL = 'http://49.232.70.73:9621';
-axios.defaults.baseURL = 'http://he.gamersky.com:9621';
+axios.defaults.baseURL = 'http://49.232.70.73/api/codeless';
+// axios.defaults.baseURL = 'http://he.gamersky.com:9621/codeless';
 //router.gamersky.com/@/content
 // axios.defaults.baseURL = 'https://crs.gamersky.com:9892';
 // axios.defaults.baseURL = '//router.gamersky.com/@';

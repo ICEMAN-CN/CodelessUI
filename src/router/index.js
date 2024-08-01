@@ -39,6 +39,14 @@ const routes = [
         },
         component: () => import('../views/HomePage/recommendedCom.vue')
     },
+    {
+        path: '/manage',
+        name: 'manage',
+        meta: {
+            title: 'manage'
+        },
+        component: () => import('../views/HomePage/manage.vue')
+    },
    
 ]
 
