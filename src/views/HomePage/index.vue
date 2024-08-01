@@ -1,177 +1,115 @@
 <template>
-    <div>
-        <el-tag size="medium" type="success">正常：{{successNum}}</el-tag>
-        <el-tag size="medium" style="margin-left: 100px" type="danger">异常：{{errorNum}}</el-tag>
-        <el-form-item label="错误列表">
-            <el-input type="textarea" v-model=errorList></el-input>
-        </el-form-item>
-        <el-table
-            :cell-style="cellStyle"
-            :data="tableData"
-            style="width: 100%"
-            :row-class-name="tableRowClassName">
-            <el-table-column
-                prop="xuhao"
-                label="序号"
-                width="50">
-            </el-table-column>
-            <el-table-column
-                prop="zhiwen"
-                label="指纹编号"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="deviceId"
-                label="设备号">
-            </el-table-column>
-            <el-table-column
-                prop="status"
-                label="状态"
-                width="50">
-            </el-table-column>
-            <el-table-column
-                prop="workStatus"
-                label="工作状态"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="speed"
-                label="速度"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="download"
-                label="下载Mbps"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="upload"
-                label="上传Mbps"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="rewards"
-                label="区块链奖励"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="latestRewardsTime"
-                label="上次奖励时间"
-                width="120">
-            </el-table-column>
-            <el-table-column
-                prop="latestRewardsAmount"
-                label="上次奖励数量"
-                width="120">
-            </el-table-column>
-            <el-table-column
-                prop="yesterdayEarnings"
-                label="昨日奖励"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="updateTime"
-                label="更新时间">
-            </el-table-column>
-        </el-table>
-    </div>
+  <div>
+    <el-row>
+      <div style="font-size: 20px; text-align: center">
+        <p>亲爱的，<br>我们目前有以下最新产品，非常满足您的需求，推荐您了解一下</p>
+      </div>
+    </el-row>
+    <el-row style="margin-top: 40px">
+      <el-col :span="11">
+        <div class="grid-content bg-purple">
+          <el-button type="primary" style="float: right" @click="openLink">点开看看</el-button>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content bg-purple-light"></div>
+      </el-col>
+      <el-col :span="11">
+        <div class="grid-content bg-purple">
+          <el-button type="info" @click="ignoreLink">不感兴趣</el-button>
+        </div>
+      </el-col>
+    </el-row>
+
+
+  </div>
 </template>
 
 <style>
-.el-table .warning-row {
-    background: red;
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
 }
 
-.el-table .success-row {
-    background: lightgreen;
+
+.bg-purple {
+  //background: #d3dce6;
 }
 
-.el-table .pending-row {
-  background: darkgray;
+.bg-purple-light {
+  //background: #e5e9f2;
 }
-
-.el-table .hired-row {
-  background: deepskyblue;
-}
-
 </style>
 
 <script>
 import userApi from "@/api/userApi";
 
 export default {
-    mounted() {
-        this.getIoStatus();
-        // 每隔5分钟定时刷新
-        this.timer = setInterval(() => {
-          this.getIoStatus();
-        }, 30000)
-    },
-    beforeDestroy() {
-      clearInterval(this.timer);
-    },
-    methods: {
-        tableRowClassName({row}) {
-            if (row.status === 'up' && row.workStatus === 'Cluster Ready') {
-                return 'success-row';
+  created() {
+    // 获取链接参数user_id和nickName值，然后存进内存中
+    this.refid = this.$route.query.refid;
+    this.clidb1 = this.$route.query.clidb1;
+    this.clidb2 = this.$route.query.clidb2;
+    console.log(this.refid)
+    console.log(this.clidb1)
+    console.log(this.clidb2)
+  },
+  mounted() {
+  },
+  beforeDestroy() {
+  },
+  methods: {
+    openLink() {
+      let params = {
+        refid: this.refid,
+        clid: this.clidb1
+      };
+      userApi.clickLink(params)
+          .then((res) => {
+            console.log(res)
+            if (res.code === 0) {
+              this.$message({
+                type: "success",
+                message: "感谢参与"
+              });
+            } else {
+              this.$message({
+                type: "danger",
+                message: res.message
+              });
             }
-          if (row.status === 'up' && row.workStatus === 'Hired') {
-            return 'hired-row';
-          }
-          if (row.status === 'up' && row.workStatus === 'Pending') {
-                return 'pending-row';
-          }
-          else {
-                return 'warning-row';
-          }
-        },
-        getIoStatus() {
-            userApi.GetIoStatus()
-                .then((res) => {
-                    console.log(res)
-                    if (res.code === 0) {
-                        this.tableData = res.data.deviceList;
-                        this.successNum = res.data.successNum;
-                        this.errorNum = res.data.errorNum;
-                        this.errorList = res.data.errorList;
-                    } else {
-                        this.$message({
-                            type: "danger",
-                            message: res.message
-                        });
-                    }
 
-                });
-        },
-        cellStyle({row, column, rowIndex, columnIndex}){
-            return {
-                color: '#FFFFFF',
-            }
-        }
+          });
     },
-    data() {
-        return {
-            timer: null,
-            deviceList: [{
-                xuhao: 'X4',
-                zhiwen: '2033',
-                deviceId: '835c9cd6-1d8e-4e4c-a867-8f8d1d24f20d',
-                status: '正常',
-                download: 0.0,
-                upload: 0.0,
-                speed: "",
-                workStatus: 'Error',
-                rewards: '0.0',
-                latestRewardsTime : '',
-                latestRewardsAmount : 0.0,
-                yesterdayEarnings : 0.0,
-            }],
-            successNum: 0,
-            errorNum: 0,
-            errorList:[],
-            tableData: []
+    ignoreLink() {
+      let params = {
+        refid: this.refid,
+        clid: this.clidb2
+      };
+      userApi.clickLink(params)
+          .then((res) => {
+            console.log(res)
+            if (res.code === 0) {
+              this.$message({
+                type: "success",
+                message: "感谢参与"
+              });
+            } else {
+              this.$message({
+                type: "danger",
+                message: res.message
+              });
+            }
 
-        }
+          });
+    },
+  },
+  data() {
+    return {
+      refid: "",
+      clidb1: "",
+      clidb2: "",
     }
+  }
 }
 </script>

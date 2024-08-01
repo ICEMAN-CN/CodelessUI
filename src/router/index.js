@@ -32,12 +32,12 @@ const routes = [
         ]
     },
     {
-        path: '/login',
-        name: 'login',
+        path: '/dashboard',
+        name: 'dashboard',
         meta: {
-            title: '系统登录'
+            title: 'dashboard'
         },
-        component: () => import('../views/LoginPage')
+        component: () => import('../views/HomePage/recommendedCom.vue')
     },
    
 ]

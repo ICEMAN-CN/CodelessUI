@@ -5,7 +5,7 @@ module.exports = {
   lintOnSave: false,
   devServer: {
     open: true,
-    port: 8889,
+    port: 9621,
     host: "he.gamersky.com",
   },
   chainWebpack (config) {

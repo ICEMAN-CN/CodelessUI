@@ -2,7 +2,6 @@
     <div class="Full">
         <el-container>
             <el-header>
-                <header-com></header-com>
             </el-header>
             <el-main>
                 <router-view />
